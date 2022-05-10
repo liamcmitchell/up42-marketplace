@@ -1,6 +1,10 @@
+import Block from "@components/Block";
+import useBlocks from "@components/useBlocks";
 import Head from "next/head";
 
 export default function Home() {
+  const { data, error } = useBlocks();
+
   return (
     <>
       <Head>
@@ -19,6 +23,7 @@ export default function Home() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: 16,
+          backgroundColor: "#fff",
         }}
       >
         <h1>UP42 Marketplace</h1>
@@ -27,10 +32,21 @@ export default function Home() {
       <main
         style={{
           paddingTop: 80,
+          paddingRight: 320,
           display: "flex",
         }}
       >
-        <div style={{ margin: 16 }}>Loading...</div>
+        {error ? (
+          <div style={{ margin: 16, color: "red" }}>{String(error)}</div>
+        ) : !data ? (
+          <div style={{ margin: 16 }}>Loading...</div>
+        ) : (
+          <div style={{ margin: 8, display: "flex", flexWrap: "wrap" }}>
+            {data.map((block) => (
+              <Block key={block.id} block={block} />
+            ))}
+          </div>
+        )}
       </main>
       <aside
         style={{
@@ -39,7 +55,7 @@ export default function Home() {
           right: 0,
           bottom: 0,
           width: 320,
-          borderLeft: "1px solid #ccc",
+          borderLeft: "1px solid #eee",
           display: "flex",
           flexDirection: "column",
           overflowY: "auto",
