@@ -10,3 +10,4 @@
 - Add to cart
 - Remove from cart
 - Buy now, added eslint for hook dep checking
+- Retrying TS, prefer that to proptypes, needed paths added to tsconfig
