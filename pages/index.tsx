@@ -73,6 +73,7 @@ export default function Home() {
           paddingTop: 80,
           paddingRight: 320,
           display: "flex",
+          flexDirection: "column",
         }}
       >
         {error ? (
