@@ -11,10 +11,7 @@ export default function Block({
       style={{
         display: "flex",
         flexDirection: "column",
-        flex: "0 1 240px",
-        margin: 8,
         border: "1px solid #eee",
-        overflowX: "hidden",
       }}
     >
       <h3 style={{ margin: 16 }}>{displayName}</h3>

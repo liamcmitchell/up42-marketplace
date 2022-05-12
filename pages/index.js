@@ -41,7 +41,15 @@ export default function Home() {
         ) : !data ? (
           <div style={{ margin: 16 }}>Loading...</div>
         ) : (
-          <div style={{ margin: 8, display: "flex", flexWrap: "wrap" }}>
+          <div
+            style={{
+              margin: 16,
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fill, [col-start] minmax(160px, 1fr) [col-end])",
+              gap: 16,
+            }}
+          >
             {data.map((block) => (
               <Block key={block.id} block={block} />
             ))}
