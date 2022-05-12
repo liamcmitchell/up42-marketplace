@@ -7,3 +7,4 @@
 - Of course CORS is not enabled, need to proxy
 - Filter results, add block component
 - Can layout blocks with CSS grid now, first time using
+- Add to cart

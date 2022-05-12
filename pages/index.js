@@ -1,9 +1,27 @@
 import Block from "@components/Block";
+import CartBlock from "@components/CartBlock";
 import useBlocks from "@components/useBlocks";
 import Head from "next/head";
+import { useCallback, useState } from "react";
 
 export default function Home() {
-  const { data, error } = useBlocks();
+  const { loading, data, error } = useBlocks();
+  const [cart, setCart] = useState([]);
+
+  const addToCart = useCallback((id) => {
+    setCart((cart) => {
+      if (!cart.includes(id)) {
+        return cart.concat(id);
+      }
+      return cart;
+    });
+  }, []);
+
+  const cartBlocks = data.filter(({ id }) => cart.includes(id));
+  const total = cartBlocks.reduce(
+    (memo, block) => memo + block.metadata.blockPricingStrategy.credits,
+    0
+  );
 
   return (
     <>
@@ -38,7 +56,7 @@ export default function Home() {
       >
         {error ? (
           <div style={{ margin: 16, color: "red" }}>{String(error)}</div>
-        ) : !data ? (
+        ) : loading ? (
           <div style={{ margin: 16 }}>Loading...</div>
         ) : (
           <div
@@ -51,7 +69,7 @@ export default function Home() {
             }}
           >
             {data.map((block) => (
-              <Block key={block.id} block={block} />
+              <Block key={block.id} block={block} addToCart={addToCart} />
             ))}
           </div>
         )}
@@ -66,10 +84,33 @@ export default function Home() {
           borderLeft: "1px solid #eee",
           display: "flex",
           flexDirection: "column",
-          overflowY: "auto",
         }}
       >
-        <h2 style={{ margin: 16 }}>Cart</h2>
+        <h2 style={{ margin: 0, padding: 16, borderBottom: "1px solid #eee" }}>
+          Cart
+        </h2>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            overflowY: "auto",
+            flex: "1 1",
+          }}
+        >
+          {cartBlocks.map((block) => (
+            <CartBlock key={block.id} block={block} />
+          ))}
+        </div>
+        <div
+          style={{
+            margin: 16,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>Total: </div>
+          <div>{total} credits</div>
+        </div>
       </aside>
     </>
   );
