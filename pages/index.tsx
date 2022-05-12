@@ -7,9 +7,9 @@ import { useCallback, useState } from "react";
 export default function Home() {
   const { loading, data, error } = useBlocks();
   const [credits, setCredits] = useState(10000);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<string[]>([]);
 
-  const addToCart = useCallback((id) => {
+  const addToCart = useCallback((id: string) => {
     setCart((cart) => {
       // Assuming you can't add the same block twice.
       if (!cart.includes(id)) {
@@ -19,7 +19,7 @@ export default function Home() {
     });
   }, []);
 
-  const removeFromCart = useCallback((id) => {
+  const removeFromCart = useCallback((id: string) => {
     setCart((cart) => {
       if (!cart.includes(id)) {
         return cart;

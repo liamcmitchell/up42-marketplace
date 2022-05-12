@@ -11,3 +11,4 @@
 - Remove from cart
 - Buy now, added eslint for hook dep checking
 - Retrying TS, prefer that to proptypes, needed paths added to tsconfig
+- Rewrite in TS, would have been nicer from the start...

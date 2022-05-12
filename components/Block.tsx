@@ -1,4 +1,10 @@
 import { memo } from "react";
+import { IBlock } from "@components/useBlocks";
+
+interface Props {
+  block: IBlock
+  addToCart(id: string): void
+}
 
 export default memo(function Block({
   block: {
@@ -9,7 +15,7 @@ export default memo(function Block({
     },
   },
   addToCart,
-}) {
+}: Props) {
   return (
     <article
       style={{
