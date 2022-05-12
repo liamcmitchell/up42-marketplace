@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 
 export default function Home() {
   const { loading, data, error } = useBlocks();
+  const [credits, setCredits] = useState(10000);
   const [cart, setCart] = useState([]);
 
   const addToCart = useCallback((id) => {
@@ -34,6 +35,15 @@ export default function Home() {
     0
   );
 
+  const buy = useCallback(() => {
+    if (total > credits) {
+      alert("Not enough credits");
+    } else {
+      setCart([]);
+      setCredits(credits - total);
+    }
+  }, [credits, total]);
+
   return (
     <>
       <Head>
@@ -56,7 +66,7 @@ export default function Home() {
         }}
       >
         <h1>UP42 Marketplace</h1>
-        <div>Credits: 10000</div>
+        <div>Credits: {credits}</div>
       </nav>
       <main
         style={{
@@ -126,6 +136,9 @@ export default function Home() {
           <div>Total: </div>
           <div>{total} credits</div>
         </div>
+        <button onClick={buy} style={{ margin: 16 }}>
+          Buy now
+        </button>
       </aside>
     </>
   );
