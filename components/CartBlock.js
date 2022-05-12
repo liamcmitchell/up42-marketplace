@@ -2,11 +2,13 @@ import { memo } from "react";
 
 export default memo(function CartBlock({
   block: {
+    id,
     displayName,
     metadata: {
       blockPricingStrategy: { credits },
     },
   },
+  removeFromCart,
 }) {
   return (
     <article
@@ -17,9 +19,24 @@ export default memo(function CartBlock({
       }}
     >
       <h3 style={{ margin: 16 }}>{displayName}</h3>
-      <div style={{ margin: 16, marginTop: 0, textAlign: "right" }}>
+      <div
+        style={{
+          margin: 16,
+          marginTop: 0,
+          marginBottom: 0,
+          textAlign: "right",
+        }}
+      >
         {credits} credits
       </div>
+      <button
+        onClick={() => {
+          removeFromCart(id);
+        }}
+        style={{ margin: 16 }}
+      >
+        Remove from cart
+      </button>
     </article>
   );
 });

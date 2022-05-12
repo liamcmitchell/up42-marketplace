@@ -10,10 +10,21 @@ export default function Home() {
 
   const addToCart = useCallback((id) => {
     setCart((cart) => {
+      // Assuming you can't add the same block twice.
       if (!cart.includes(id)) {
         return cart.concat(id);
       }
       return cart;
+    });
+  }, []);
+
+  const removeFromCart = useCallback((id) => {
+    setCart((cart) => {
+      if (!cart.includes(id)) {
+        return cart;
+      }
+
+      return cart.filter((_id) => _id !== id);
     });
   }, []);
 
@@ -98,7 +109,11 @@ export default function Home() {
           }}
         >
           {cartBlocks.map((block) => (
-            <CartBlock key={block.id} block={block} />
+            <CartBlock
+              key={block.id}
+              block={block}
+              removeFromCart={removeFromCart}
+            />
           ))}
         </div>
         <div

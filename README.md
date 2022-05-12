@@ -8,3 +8,4 @@
 - Filter results, add block component
 - Can layout blocks with CSS grid now, first time using
 - Add to cart
+- Remove from cart
