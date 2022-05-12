@@ -2,8 +2,8 @@ import { memo } from "react";
 import { IBlock } from "@components/useBlocks";
 
 interface Props {
-  block: IBlock
-  removeFromCart(id: string): void
+  block: IBlock;
+  removeFromCart(id: string): void;
 }
 
 export default memo(function CartBlock({

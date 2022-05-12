@@ -2,8 +2,8 @@ import { memo } from "react";
 import { IBlock } from "@components/useBlocks";
 
 interface Props {
-  block: IBlock
-  addToCart(id: string): void
+  block: IBlock;
+  addToCart(id: string): void;
 }
 
 export default memo(function Block({
@@ -11,6 +11,7 @@ export default memo(function Block({
     id,
     displayName,
     metadata: {
+      blockThumbnailUrl,
       blockPricingStrategy: { credits },
     },
   },
@@ -24,6 +25,12 @@ export default memo(function Block({
         border: "1px solid #eee",
       }}
     >
+      <div
+        style={{
+          height: 100,
+          backgroundImage: `url(${blockThumbnailUrl}), linear-gradient(#eee, #eee)`,
+        }}
+      />
       <h3 style={{ margin: 16 }}>{displayName}</h3>
       <div style={{ margin: "auto" }} />
       <div style={{ margin: 16, marginBottom: 0 }}>{credits} credits</div>

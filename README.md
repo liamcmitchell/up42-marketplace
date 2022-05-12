@@ -1,5 +1,7 @@
 # UP42 Marketplace
 
+## Notes from dev
+
 - Starting from [netlify template](https://github.com/netlify-templates/next-netlify-starter)
 - Clean, install prettier, tried setting TS up, compiler issue, reverted
 - Layout, using inline styles for simplicity, not planning on doing mobile layout
@@ -12,3 +14,4 @@
 - Buy now, added eslint for hook dep checking
 - Retrying TS, prefer that to proptypes, needed paths added to tsconfig
 - Rewrite in TS, would have been nicer from the start...
+- Add some color
