@@ -1,8 +1,8 @@
 import Block from "@components/Block";
-import CartBlock from "@components/CartBlock";
 import useBlocks from "@components/useBlocks";
 import Head from "next/head";
 import { useCallback, useState } from "react";
+import Cart from "@components/Cart";
 
 export default function Home() {
   const { loading, data, error } = useBlocks();
@@ -108,38 +108,12 @@ export default function Home() {
           flexDirection: "column",
         }}
       >
-        <h2 style={{ margin: 0, padding: 16, borderBottom: "1px solid #eee" }}>
-          Cart
-        </h2>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            overflowY: "auto",
-            flex: "1 1",
-          }}
-        >
-          {cartBlocks.map((block) => (
-            <CartBlock
-              key={block.id}
-              block={block}
-              removeFromCart={removeFromCart}
-            />
-          ))}
-        </div>
-        <div
-          style={{
-            margin: 16,
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>Total: </div>
-          <div>{total} credits</div>
-        </div>
-        <button onClick={buy} style={{ margin: 16 }}>
-          Buy now
-        </button>
+        <Cart
+          cartBlocks={cartBlocks}
+          removeFromCart={removeFromCart}
+          total={total}
+          buy={buy}
+        />
       </aside>
     </>
   );
